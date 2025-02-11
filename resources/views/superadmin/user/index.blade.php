@@ -6,6 +6,7 @@
     <div class="text-end">
         <a href="{{ route('users.create') }}" class="btn btn-primary">Add new user</a>
     </div>
+    
     <table class="table">
         <thead>
           <tr>
@@ -17,13 +18,15 @@
           </tr>
         </thead>
         <tbody>
+            @foreach($users as $user) 
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+            <th scope="row">{{ $user->id }}</th>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->usertype }}</td>
+            <td>Edit/Delete</td>
           </tr>
+          @endforeach
         </tbody>
       </table>
 </div>

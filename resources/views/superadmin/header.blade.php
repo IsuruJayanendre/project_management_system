@@ -29,6 +29,7 @@
     }
 </style>
 
+@include('sweetalert::alert')
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
 <div class="container-fluid">

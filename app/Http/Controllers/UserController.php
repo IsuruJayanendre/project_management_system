@@ -28,27 +28,26 @@ class UserController extends Controller
     }
 
     //create user
-    public function store(Request $request) 
+    public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
-                'role' => 'required|in:branchAdmin,SubAdmin', // Validation expects 'role'
-            ]);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:15|unique:users,phone',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|string|in:marketing,user',
+        ]);
 
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'userType' => $request->role, // Use correct field name from form
-            ]);
+        // Create user
+        $user = User::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'usertype' => $request->role,
+        ]);
 
-            return redirect()->route('users.index')->with('success', 'User added successfully!');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
-        }
+        return redirect()->route('users.index')->with('success', 'User registered successfully!');
     }
 
     //edit user form
