@@ -1,7 +1,7 @@
 <div class="sidebar">
     <h4 class="text-white text-center" id="usertype">{{ Auth::user()->usertype }}</h4>
     <hr>
-    <a href="#" class="menu-item car"><i class="fas fa-car me-2"></i> Car</a>
+    <a href="{{route('users.index') }}" class="menu-item car"><i class="fas fa-car me-2"></i> Users </a>
     <a href="#" class="menu-item van"><i class="fas fa-shuttle-van me-2"></i> Van</a>
     <a href="#" class="menu-item bus"><i class="fas fa-bus me-2"></i> Bus</a>
 
