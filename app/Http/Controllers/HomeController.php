@@ -9,19 +9,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->usertype == 'superadmin')
-        {
-            return view('test');
-        }
-        else if (Auth::user()->usertype == 'marketing') {
-            return view('marketing.dashboard');
-        } 
         
-        else {
-            $data = User::where('usertype', 'user')->get();
-            return view ('admin.dashboard',compact('data'));
-        }
-        
+        return view('test');
        
     }
 }

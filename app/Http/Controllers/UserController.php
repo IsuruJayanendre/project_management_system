@@ -18,13 +18,13 @@ class UserController extends Controller
     public function index()
     {
         $users=User::all();
-        return view('superadmin.user.index', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     //create users form
     public function create()
     {
-        return view('superadmin.user.create');
+        return view('users.create');
     }
 
     //create user
