@@ -29,8 +29,8 @@
         <div class="mb-3">
             <label for="exampleInputPassword1" class="block mb-2 text-sm font-medium text-gray-900">Select User role</label>
           <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" aria-label="Default select example" name="role">
-            <option value="marketing">Marketting</option>
             <option value="user">User</option>
+            <option value="marketing">Marketting</option> 
           </select>
         </div>
         <div class="text-end">
