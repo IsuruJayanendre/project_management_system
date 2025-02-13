@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         if (Auth::user()->usertype == 'superadmin')
         {
-            return view('superadmin.dashboard');
+            return view('test');
         }
         else if (Auth::user()->usertype == 'marketing') {
             return view('marketing.dashboard');
