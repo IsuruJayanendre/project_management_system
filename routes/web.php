@@ -30,6 +30,8 @@ Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edi
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
+//category routes
+
 Route::get('/project-types', [ProjectTypeController::class, 'index'])->name('project_types.index');
 Route::get('/project-types/create', [ProjectTypeController::class, 'create'])->name('project_types.create');
 Route::post('/project-types/store', [ProjectTypeController::class, 'store'])->name('project_types.store');
