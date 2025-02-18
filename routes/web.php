@@ -33,6 +33,7 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.
 //category routes
 
 Route::get('/project-types', [ProjectTypeController::class, 'index'])->name('project_types.index');
+Route::get('/project-sub-types', [ProjectTypeController::class, 'subCategory'])->name('project_sub_types.index');
 Route::get('/project-types/create', [ProjectTypeController::class, 'create'])->name('project_types.create');
 Route::post('/project-types/store', [ProjectTypeController::class, 'store'])->name('project_types.store');
 Route::get('/project-types/{id}/edit', [ProjectTypeController::class, 'edit'])->name('project_types.edit');
@@ -41,6 +42,7 @@ Route::delete('/project-types/{id}', [ProjectTypeController::class, 'destroy'])-
 
 // sub category
 
+Route::post('/addSub', [ProjectTypeController::class, 'addSub'])->name('add.subCategory');
 Route::post('/project-types/{id}/add-subcategory', [ProjectTypeController::class, 'addSubcategory'])->name('project_types.add_subcategory');
 Route::get('/subcategories/{id}/edit', [ProjectTypeController::class, 'editSubcategory'])->name('subcategories.edit');
 Route::put('/subcategories/{id}/update', [ProjectTypeController::class, 'updateSubcategory'])->name('subcategories.update');
