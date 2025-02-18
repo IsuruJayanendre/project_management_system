@@ -39,6 +39,8 @@ Route::get('/project-types/{id}/edit', [ProjectTypeController::class, 'edit'])->
 Route::put('/project-types/{id}/update', [ProjectTypeController::class, 'update'])->name('project_types.update');
 Route::delete('/project-types/{id}', [ProjectTypeController::class, 'destroy'])->name('project_types.destroy');
 
+// sub category
+
 Route::post('/project-types/{id}/add-subcategory', [ProjectTypeController::class, 'addSubcategory'])->name('project_types.add_subcategory');
 Route::get('/subcategories/{id}/edit', [ProjectTypeController::class, 'editSubcategory'])->name('subcategories.edit');
 Route::put('/subcategories/{id}/update', [ProjectTypeController::class, 'updateSubcategory'])->name('subcategories.update');
