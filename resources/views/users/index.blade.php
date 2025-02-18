@@ -11,7 +11,7 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
     <table class="w-full text-sm text-left rtl:text-right text-white dark:text-white">
-        <thead class="text-xs text-white uppercase bg-gray-50 dark:bg-blue-900 dark:white">
+        <thead class="text-xs text-white uppercase bg-blue-900 dark:bg-blue-900 dark:white">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     ID
