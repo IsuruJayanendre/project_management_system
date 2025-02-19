@@ -54,7 +54,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('superadmin.user.edit', compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     //seve edited data
@@ -64,7 +64,7 @@ class UserController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-                'role' => 'required|in:branchAdmin,SubAdmin',
+                'role' => 'required',
 
                 // Password validation (if user wants to update)
                 'old_password' => 'nullable|string|min:6',

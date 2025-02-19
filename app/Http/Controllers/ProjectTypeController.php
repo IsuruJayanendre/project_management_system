@@ -14,6 +14,13 @@ class ProjectTypeController extends Controller
         return view('project_types.index', compact('projectTypes'));
     }
 
+    public function subCategory()
+    {
+        $types=ProjectType::all();
+        $sub_types = ProjectSubcategory::all();
+        return view('project_types.sub_types', compact('sub_types','types'));
+    }
+
     public function create()
     {
         return view('project_types.create');
@@ -53,6 +60,22 @@ class ProjectTypeController extends Controller
         ProjectSubcategory::create(['name' => $data['name'], 'project_type_id' => $id]);
         return redirect()->route('project_types.index')->with('success', 'Subcategory Added Successfully');
     }
+
+    public function addSub(Request $request){
+        $request->validate([
+            'category_id' => 'required|string|max:255',
+            'name' => 'required|string|max:50',
+            
+        ]);
+        ProjectSubcategory::create([
+            'project_type_id' => $request->category_id,
+            'name' => $request->name,
+            
+        ]);
+    
+        return redirect()->back();
+    }
+
     public function editSubcategory($id)
     {
         $subcategory = ProjectSubcategory::findOrFail($id);
