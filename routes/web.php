@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTypeController;
 use App\Http\Controllers\UserController;
 
@@ -39,7 +40,18 @@ Route::get('/project-types/{id}/edit', [ProjectTypeController::class, 'edit'])->
 Route::put('/project-types/{id}/update', [ProjectTypeController::class, 'update'])->name('project_types.update');
 Route::delete('/project-types/{id}', [ProjectTypeController::class, 'destroy'])->name('project_types.destroy');
 
+// sub category
+
 Route::post('/project-types/{id}/add-subcategory', [ProjectTypeController::class, 'addSubcategory'])->name('project_types.add_subcategory');
 Route::get('/subcategories/{id}/edit', [ProjectTypeController::class, 'editSubcategory'])->name('subcategories.edit');
 Route::put('/subcategories/{id}/update', [ProjectTypeController::class, 'updateSubcategory'])->name('subcategories.update');
 Route::delete('/subcategories/{id}', [ProjectTypeController::class, 'destroySubcategory'])->name('subcategories.destroy');
+
+//project registration
+
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+Route::post('/projects/store', [ProjectController::class, 'store'])->name('projects.store');
+Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+Route::put('/projects/{id}', [ProjectController::class, 'update'])->name('projects.update');
+Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
