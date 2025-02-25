@@ -13,6 +13,11 @@
         </div>
 
         <div class="mb-4">
+            <label for="company" class="block text-gray-700 font-bold mb-2">Company</label>
+            <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="company" name="company" required>
+        </div>
+
+        <div class="mb-4">
             <label for="project_type_id" class="block text-gray-700 font-bold mb-2">Project Type</label>
             <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="project_type_id" name="project_type_id" required>
                 <option value="">Select Project Type</option>
@@ -47,11 +52,21 @@
         </div>
 
         <div class="mb-4">
+            <label for="remain_date" class="block text-gray-700 font-bold mb-2">Remaining Date</label>
+            <input type="date" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="remain_date" name="remain_date" required>
+        </div>
+
+        <div class="mb-4">
             <label for="note" class="block text-gray-700 font-bold mb-2">Note</label>
             <textarea class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="note" name="note"></textarea>
         </div>
 
         <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Create Project</button>
     </form>
+    @if(session('success'))
+    <div class="bg-green-500 text-white p-3 rounded">
+        {{ session('success') }}
+    </div>
+@endif
 </div>
 @endsection
