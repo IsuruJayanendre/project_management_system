@@ -35,10 +35,10 @@
             </div>
         
             <div class="text-end">
-                <a href="{{ route('users.index') }}" class="text-white bg-gray-500 hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center">
+                <a href="{{ route('users.index') }}" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700">
                     Cancel
                 </a>&nbsp;
-                <button type="submit" class="text-white bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center">
+                <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">
                     Update User
                 </button>
             </div>

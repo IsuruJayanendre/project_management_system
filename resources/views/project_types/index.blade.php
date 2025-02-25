@@ -7,7 +7,7 @@
     <div class="text-end">
         <a href="javascript:void(0)" 
             onclick="openModal()"
-            class="text-white bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-900 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Add New Project Type
         </a>
     </div><br>
@@ -42,10 +42,10 @@
                     
                     
                     <td class="px-6 py-4 text-right">
-                        <div class="flex items-right space-x-2">
+                        <div class="flex justify-end gap-2">
                             <!-- Edit Button -->
                             <button @click="openEditModal({{ $type }})"
-                                class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center">
+                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded">
                                 Edit
                             </button>
                     
@@ -53,12 +53,13 @@
                             <form action="{{ route('project_types.destroy', $type->id) }}" method="POST" class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 delete-btn">
+                                <button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded delete-btn">
                                     Delete
                                 </button>
                             </form>
                         </div>
                     </td>
+                    
                 </tr>
                 
                 @endforeach
@@ -128,7 +129,7 @@
                         class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
                     Cancel
                 </button>
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">
                     Save
                 </button>
             </div>

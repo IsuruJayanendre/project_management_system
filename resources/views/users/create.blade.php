@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content">
-    <div class="container p-5">
+    <div class="container mx-auto p-6">
         <form action="{{ route('users.store') }}" method="POST" class="max-w-sm mx-auto p-4 rounded-lg">
             @csrf
         <div class="mb-3">
@@ -36,10 +36,10 @@
           </select>
         </div>
         <div class="text-end">
-          <a href="{{ route('users.index') }}" class="text-white bg-gray-500 hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center">
+          <a href="{{ route('users.index') }}" class="bg-gray-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
             Cancel
         </a>&nbsp
-        <button type="submit" class="text-white bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center">Register user</button>
+        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Register user</button>
         </div>
       </form>
     </div>

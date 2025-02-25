@@ -5,7 +5,7 @@
 <div class="text-end">
     <a href="javascript:void(0)" 
         onclick="openModal()"
-        class="text-white bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-900 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Add New sub Category
     </a>
 </div><br>
@@ -38,15 +38,30 @@
                     {{ $subcategory->id }}
                 </td>
                 <td class="px-6 py-4 text-black">
-                    {{ $subcategory->name }}
+                    {{ $subcategory->projectType->name }}                   
                 </td>
                 <td class="px-6 py-4 text-black">
-                    {{ $subcategory->projectType->name }}
+                    {{ $subcategory->name }}
                 </td>
                 
                 <td class="px-6 py-4 text-right">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <div class="flex justify-end gap-2">
+                        <!-- Edit Button -->
+                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded">
+                            Edit
+                        </button>
+                
+                        <!-- Delete Button -->
+                        <form action="{{ route('subcategories.destroy', $subcategory->id) }}" method="POST" class="delete-form">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded delete-btn">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
                 </td>
+                
             </tr>
             @endforeach
         </tbody>
@@ -79,7 +94,7 @@
                         class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
                     Cancel
                 </button>
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">
                     Save
                 </button>
             </div>
@@ -95,6 +110,29 @@
     function closeModal() {
         document.getElementById('modal').classList.add('hidden');
     }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", function () {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.closest("form").submit();
+                    }
+                });
+            });
+        });
+    });
 </script>
 
 @endsection
