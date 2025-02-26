@@ -73,6 +73,20 @@
                <span class="ms-3">{{ Auth::user()->usertype }} Dashboard</span>
             </a>
          </li>
+         
+         {{-- notification sidebar --}}
+         <li>
+            <a href="{{ route('notifications.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2a8 8 0 1 0 8 8 8 8 0 0 0-8-8Zm1 11H9v-2h2v2Zm0-4H9V5h2v4Z"/>
+                </svg>
+                <span class="flex-1 ms-3 whitespace-nowrap">Notifications</span>
+                {{-- <span class="inline-flex items-center justify-center w-3 h-3 p-3 text-xs font-semibold text-white bg-red-500 rounded-full">
+                    {{ \App\Models\ProjectNotification::where('user_id', Auth::id())->whereNull('read_at')->count() }}
+                </span> --}}
+            </a>
+        </li>
+        
          <li>
             <a href="{{ route('projects.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
