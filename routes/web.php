@@ -25,6 +25,7 @@ Route::middleware([
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 
 //user routes
+
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
@@ -66,3 +67,4 @@ Route::get('/notifications', [ProjectNotificationController::class, 'index'])->n
 Route::get('/check-remain-date-notifications', [ProjectNotificationController::class, 'checkRemainDateNotifications']);
 Route::post('/notifications/{id}/read', [ProjectNotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 Route::delete('/notifications/{id}', [ProjectNotificationController::class, 'destroy'])->name('notifications.destroy');
+Route::get('/projects/{id}/download-invoice', [ProjectController::class, 'downloadInvoice'])->name('projects.downloadInvoice');

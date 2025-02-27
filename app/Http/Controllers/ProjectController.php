@@ -8,6 +8,7 @@ use App\Models\ProjectSubcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class ProjectController extends Controller
@@ -62,6 +63,7 @@ class ProjectController extends Controller
     {
         $validated = $request->validate([
             'client_name' => 'required|string|max:255',
+            'project_name' => 'required|string|max:255',
             'company' => 'required|string|max:255',
             'project_type_id' => 'required|exists:project_types,id',
             'project_subcategory_id' => 'nullable|exists:project_subcategories,id',
@@ -113,6 +115,7 @@ class ProjectController extends Controller
         try {
         $validated = $request->validate([
             'client_name' => 'required|string|max:255',
+            'project_name' => 'required|string|max:255',
             'company' => 'required|string|max:255',
             'project_type_id' => 'required|exists:project_types,id',
             'project_subcategory_id' => 'nullable|exists:project_subcategories,id',
@@ -152,5 +155,14 @@ class ProjectController extends Controller
             Alert::error('Error', 'Something went wrong!');
         }
         return redirect()->back();
+    }
+
+    public function downloadInvoice($id)
+    {
+        $project = Project::findOrFail($id);
+
+        $pdf = Pdf::loadView('projects.invoice', compact('project'));
+
+        return $pdf->download('project-invoice-' . $project->id . '.pdf');
     }
 }
