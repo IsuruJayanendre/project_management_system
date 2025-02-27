@@ -11,20 +11,20 @@
             Add New Project Type
         </a>
     </div><br>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="overflow-x-auto">
 
-        <table class="w-full text-sm text-left rtl:text-right text-white dark:text-white">
-            <thead class="text-xs text-white uppercase bg-blue-900 dark:bg-blue-900 dark:white">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        ID
+        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="px-4 py-2 border">
+                        #
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th class="px-4 py-2 border">
                         Category
                     </th>
                     
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Edit</span>
+                    <th class="px-4 py-2 border">
+                        Action
                     </th>
                 </tr>
             </thead>
@@ -32,16 +32,16 @@
                 @foreach($projectTypes as $type)
                     
                 
-                <tr class="bg-white border-b dark:bg-white dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-200">
-                    <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap dark:black">
+                <tr class="border-b hover:bg-gray-100">
+                    <td class="px-4 py-2 border">
                         {{ $type->id }}
-                    </th>
-                    <td class="px-6 py-4 text-black">
+                    </td>
+                    <td class="px-4 py-2 border">
                         {{ $type->name }}
                     </td>
                     
                     
-                    <td class="px-6 py-4 text-right">
+                    <td class="px-4 py-2 border">
                         <div class="flex justify-end gap-2">
                             <!-- Edit Button -->
                             <button @click="openEditModal({{ $type }})"

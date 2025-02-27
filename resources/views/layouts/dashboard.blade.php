@@ -11,56 +11,51 @@
 </head>
 <body class="bg-white">
 
-<nav class="fixed top-0 z-50 w-full bg-blue-900 border-b border-gray-700 dark:bg-blue-900 dark:border-gray-700">
-  <div class="px-3 py-3 lg:px-5 lg:pl-3">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center justify-start rtl:justify-end">
-        <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-            <span class="sr-only">Open sidebar</span>
-            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-               <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-            </svg>
-         </button>
-        <a href="https://flowbite.com" class="flex ms-2 md:me-24 ">
-          <img src="{{url('images/logo.jpg')}}" class="h-8 me-3" alt="FlowBite Logo" />
-          <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">NETIT Technology</span>
-        </a>
-      </div>
-      <div class="flex items-center">
-          <div class="flex items-center ms-3">
-            <div>
-                <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" 
-                        aria-expanded="false" id="dropdownUserButton">
-                    <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
-                </button>
+    <nav class="fixed top-0 z-50 w-full bg-blue-900 border-b border-gray-700 dark:bg-blue-900 dark:border-blue-900">
+        <div class="px-3 py-3 lg:px-5 lg:pl-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center justify-start rtl:justify-end">
+              <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                  <span class="sr-only">Open sidebar</span>
+                  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                     <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                  </svg>
+               </button>
+              <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+                <img src="{{url('images/logo.jpg')}}" class="h-8 me-3" alt="FlowBite Logo" />
+                <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">NETIT Technology</span>
+              </a>
             </div>
-            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm dark:bg-gray-700 dark:divide-gray-600" 
-                id="dropdown-user">
-                <div class="px-4 py-3">
-                    <p class="text-sm text-gray-900 dark:text-white">Neil Sims</p>
-                    <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300">neil.sims@flowbite.com</p>
+            <div class="flex items-center">
+              <div class="flex items-center ms-3 relative">
+                <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" 
+                        id="dropdown-btn">
+                    <span class="sr-only">Open user menu</span>
+                    <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="user photo">
+                </button>
+      
+                <!-- Dropdown Menu (Appears Over Navbar) -->
+                <div id="dropdown-user" class="absolute top-full right-0 mt-2 w-48 z-50 hidden bg-white divide-y divide-gray-100 rounded-md shadow-lg dark:bg-gray-700 dark:divide-gray-600">
+                    <div class="px-4 py-3">
+                        <p class="text-sm text-gray-900 dark:text-white">signed as: {{ Auth::user()->usertype }}</p>
+                        <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300">{{ Auth::user()->email }}</p>
+                    </div>
+                    <ul class="py-1">
+                        
+                        <li>
+                            <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="py-1">
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-                    </li>
-                </ul>
+              </div>
             </div>
           </div>
         </div>
-    </div>
-  </div>
-</nav>
+      </nav>
 
 <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-blue-900 border-r border-gray-700 sm:translate-x-0 dark:bg-blue-900 dark:border-blue-900" aria-label="Sidebar">
    <div class="h-full px-3 pb-4 overflow-y-auto bg-blue-900 dark:bg-blue-900">
@@ -71,20 +66,20 @@
                   <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
                   <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
                </svg>
-               <span class="ms-3">{{ Auth::user()->usertype }} Dashboard</span>
+               <span class="ms-3">Dashboard</span>
             </a>
          </li>
          
          {{-- notification sidebar --}}
          <li>
             <a href="{{ route('notifications.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10 2a8 8 0 1 0 8 8 8 8 0 0 0-8-8Zm1 11H9v-2h2v2Zm0-4H9V5h2v4Z"/>
                 </svg>
                 <span class="flex-1 ms-3 whitespace-nowrap">Notifications</span>
-                {{-- <span class="inline-flex items-center justify-center w-3 h-3 p-3 text-xs font-semibold text-white bg-red-500 rounded-full">
+                 <span class="inline-flex items-center justify-center w-3 h-3 p-3 text-xs font-semibold text-white bg-red-500 rounded-full">
                     {{ \App\Models\ProjectNotification::where('user_id', Auth::id())->whereNull('read_at')->count() }}
-                </span> --}}
+                </span> 
             </a>
         </li>
         
@@ -180,11 +175,26 @@
    </div>
 </div>
 
+<button id="dropdown-btn" class="px-4 py-2 bg-blue-600 text-white rounded-md">
+    Open Menu
+</button>
+
+<!-- JavaScript to Toggle Overlay -->
 <script>
-    document.getElementById("dropdownUserButton").addEventListener("click", function() {
+    document.getElementById("dropdown-btn").addEventListener("click", function () {
         document.getElementById("dropdown-user").classList.toggle("hidden");
     });
-</script>
+    
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+        let dropdown = document.getElementById("dropdown-user");
+        let button = document.getElementById("dropdown-btn");
+        
+        if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+            dropdown.classList.add("hidden");
+        }
+    });
+    </script>
     
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 

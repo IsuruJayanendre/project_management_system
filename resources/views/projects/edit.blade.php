@@ -14,6 +14,11 @@
         </div>
 
         <div class="mb-4">
+            <label for="client_name" class="block text-gray-700 font-bold mb-2">Project Name</label>
+            <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="project_name" name="project_name" value="{{ $project->project_name }}" required>
+        </div>
+
+        <div class="mb-4">
             <label for="company" class="block text-gray-700 font-bold mb-2">Company</label>
             <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="company" name="company" value="{{ $project->company }}" required>
         </div>

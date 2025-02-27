@@ -10,61 +10,72 @@
     </a>
 </div><br>
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="overflow-x-auto">
 
-    <table class="w-full text-sm text-left rtl:text-right text-white dark:text-white">
-        <thead class="text-xs text-white uppercase bg-blue-900 dark:bg-blue-900 dark:white">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    ID
-                </th>
-                <th scope="col" class="px-6 py-3">
+    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="px-4 py-2 border">
                     Main category
                 </th>
-                <th scope="col" class="px-6 py-3">
+                {{-- <th class="px-4 py-2 border">
+                    ID
+                </th> --}}
+                <th class="px-4 py-2 border">
                     Sub category
                 </th>
                 
-                <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Edit</span>
+                <th class="px-4 py-2 border">
+                    Action
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach($sub_types as $subcategory)
-            <tr class="bg-white border-b dark:bg-white dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-200">
-                
-                <td class="px-6 py-4 text-black">
-                    {{ $subcategory->id }}
-                </td>
-                <td class="px-6 py-4 text-black">
-                    {{ $subcategory->projectType->name }}                   
-                </td>
-                <td class="px-6 py-4 text-black">
-                    {{ $subcategory->name }}
-                </td>
-                
-                <td class="px-6 py-4 text-right">
-                    <div class="flex justify-end gap-2">
-                        <!-- Edit Button -->
-                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded">
-                            Edit
-                        </button>
-                
-                        <!-- Delete Button -->
-                        <form action="{{ route('subcategories.destroy', $subcategory->id) }}" method="POST" class="delete-form">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded delete-btn">
-                                Delete
-                            </button>
-                        </form>
-                    </div>
-                </td>
-                
-            </tr>
+            @foreach($sub_types as $projectTypeId => $subCategories)
+                @php
+                    $mainCategory = $subCategories->first()->projectType;
+                @endphp
+        
+                @foreach($subCategories as $index => $subcategory)
+                    <tr class="border-b hover:bg-gray-100">
+                        <!-- Show Main Category Name Only in First Row -->
+                        @if ($index === 0)
+                            <td class="px-4 py-2 border font-bold text-center" rowspan="{{ count($subCategories) }}">
+                                {{ $mainCategory->name }}
+                            </td>
+                        @endif
+        
+                        <!-- Subcategory Details -->
+                        {{-- <td class="px-4 py-2 border">
+                            {{ $subcategory->id }}
+                        </td> --}}
+                        <td class="px-4 py-2 border">
+                            {{ $subcategory->name }}
+                        </td>
+        
+                        <!-- Action Buttons -->
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex justify-end gap-2">
+                                <!-- Edit Button -->
+                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded">
+                                    Edit
+                                </button>
+        
+                                <!-- Delete Button -->
+                                <form action="{{ route('subcategories.destroy', $subcategory->id) }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded delete-btn">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
             @endforeach
         </tbody>
+        
     </table>
 </div>
 <!--insert model-->

@@ -21,6 +21,7 @@
                 <tr class="bg-gray-200">
                     <th class="px-4 py-2 border">#</th>
                     <th class="px-4 py-2 border">Client Name</th>
+                    <th class="px-4 py-2 border">Project Name</th>
                     <th class="px-4 py-2 border">Project Type</th>
                     <th class="px-4 py-2 border">Subcategory</th>
                     <th class="px-4 py-2 border">Price</th>
@@ -34,12 +35,16 @@
                     <tr class="border-b hover:bg-gray-100">
                         <td class="px-4 py-2 border">{{ $key + 1 }}</td>
                         <td class="px-4 py-2 border">{{ $project->client_name }}</td>
+                        <td class="px-4 py-2 border">{{ $project->project_name }}</td>
                         <td class="px-4 py-2 border">{{ $project->projectType->name }}</td>
                         <td class="px-4 py-2 border">{{ $project->projectSubcategory->name ?? 'N/A' }}</td>
                         <td class="px-4 py-2 border">{{ number_format($project->price, 2) }}</td>
                         <td class="px-4 py-2 border">{{ $project->starting_date }}</td>
                         <td class="px-4 py-2 border">{{ $project->note }}</td>
                         <td class="px-4 py-2 border flex space-x-2">
+                            <a href="{{ route('projects.downloadInvoice', $project->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">
+                                Invoice
+                            </a>
                             <a href="{{ route('projects.edit', $project->id) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded">Edit</a>
                             <form id="delete-form-{{ $project->id }}" action="{{ route('projects.destroy', $project->id) }}" method="POST">
                                 @csrf

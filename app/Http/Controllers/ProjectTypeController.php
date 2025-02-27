@@ -17,10 +17,14 @@ class ProjectTypeController extends Controller
 
     public function subCategory()
     {
-        $types=ProjectType::all();
-        $sub_types = ProjectSubcategory::all();
-        return view('project_types.sub_types', compact('sub_types','types'));
+        $types = ProjectType::all();
+        
+        // Group subcategories by project_type_id
+        $sub_types = ProjectSubcategory::all()->groupBy('project_type_id');
+
+        return view('project_types.sub_types', compact('sub_types', 'types'));
     }
+
 
     public function create()
     {

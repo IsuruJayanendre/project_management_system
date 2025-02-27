@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content">
-    <div class="container mx-auto p-6">
+    <div class="bg-white p-6 rounded-lg w-3/5 mx-auto">
         <form action="{{ route('users.store') }}" method="POST" class="max-w-sm mx-auto p-4 rounded-lg">
             @csrf
         <div class="mb-3">
@@ -36,7 +36,7 @@
           </select>
         </div>
         <div class="text-end">
-          <a href="{{ route('users.index') }}" class="bg-gray-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+          <a href="{{ route('users.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
             Cancel
         </a>&nbsp
         <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Register user</button>
