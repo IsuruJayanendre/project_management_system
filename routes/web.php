@@ -25,6 +25,7 @@ Route::middleware([
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 
 //user routes
+
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
@@ -35,6 +36,7 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.
 //category routes
 
 Route::get('/project-types', [ProjectTypeController::class, 'index'])->name('project_types.index');
+Route::get('/project-sub-types', [ProjectTypeController::class, 'subCategory'])->name('project_sub_types.index');
 Route::get('/project-types/create', [ProjectTypeController::class, 'create'])->name('project_types.create');
 Route::post('/project-types/store', [ProjectTypeController::class, 'store'])->name('project_types.store');
 Route::get('/project-types/{id}/edit', [ProjectTypeController::class, 'edit'])->name('project_types.edit');
@@ -43,6 +45,7 @@ Route::delete('/project-types/{id}', [ProjectTypeController::class, 'destroy'])-
 
 // sub category
 
+Route::post('/addSub', [ProjectTypeController::class, 'addSub'])->name('add.subCategory');
 Route::post('/project-types/{id}/add-subcategory', [ProjectTypeController::class, 'addSubcategory'])->name('project_types.add_subcategory');
 Route::get('/subcategories/{id}/edit', [ProjectTypeController::class, 'editSubcategory'])->name('subcategories.edit');
 Route::put('/subcategories/{id}/update', [ProjectTypeController::class, 'updateSubcategory'])->name('subcategories.update');
@@ -64,3 +67,4 @@ Route::get('/notifications', [ProjectNotificationController::class, 'index'])->n
 Route::get('/check-remain-date-notifications', [ProjectNotificationController::class, 'checkRemainDateNotifications']);
 Route::post('/notifications/{id}/read', [ProjectNotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 Route::delete('/notifications/{id}', [ProjectNotificationController::class, 'destroy'])->name('notifications.destroy');
+Route::get('/projects/{id}/download-invoice', [ProjectController::class, 'downloadInvoice'])->name('projects.downloadInvoice');

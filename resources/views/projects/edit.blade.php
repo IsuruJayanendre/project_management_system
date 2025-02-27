@@ -14,6 +14,11 @@
         </div>
 
         <div class="mb-4">
+            <label for="client_name" class="block text-gray-700 font-bold mb-2">Project Name</label>
+            <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="project_name" name="project_name" value="{{ $project->project_name }}" required>
+        </div>
+
+        <div class="mb-4">
             <label for="company" class="block text-gray-700 font-bold mb-2">Company</label>
             <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="company" name="company" value="{{ $project->company }}" required>
         </div>
@@ -57,8 +62,10 @@
             <label for="note" class="block text-gray-700 font-bold mb-2">Note</label>
             <textarea class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="note" name="note">{{ $project->note }}</textarea>
         </div>
-
-        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Update Project</button>
+        
+        <div class="text-end">
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Update Project</button>
+        </div>
     </form>
 </div>
 

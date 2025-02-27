@@ -21,7 +21,7 @@
                             📅 {{ $notification->message }} 
                         </p>
                         <span class="text-sm text-gray-500">
-                            Project: <strong>{{ $notification->project->name ?? 'Unknown' }}</strong> | 
+                            Project: <strong>{{ $notification->project->progect_name ?? 'Unknown' }}</strong> | 
                             Remain Date: <strong>{{ $notification->project->remain_date ?? 'N/A' }}</strong>
                         </span>
                     </div>

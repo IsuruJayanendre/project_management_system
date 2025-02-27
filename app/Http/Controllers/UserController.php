@@ -30,6 +30,8 @@ class UserController extends Controller
     //create user
     public function store(Request $request)
     {
+        try{
+
         $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:15|unique:users,phone',
@@ -46,15 +48,18 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'usertype' => $request->role,
         ]);
-
-        return redirect()->route('users.index')->with('success', 'User registered successfully!');
+        Alert::success('Success', 'User added successfully!');
+    }catch (\Exception $e) {
+            Alert::error('Error', 'Something went wrong!');
+        }
+        return redirect()->route('users.index');
     }
 
     //edit user form
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('superadmin.user.edit', compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     //seve edited data
@@ -64,7 +69,7 @@ class UserController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-                'role' => 'required|in:branchAdmin,SubAdmin',
+                'role' => 'required',
 
                 // Password validation (if user wants to update)
                 'old_password' => 'nullable|string|min:6',
@@ -85,10 +90,11 @@ class UserController extends Controller
                 'userType' => $request->role,
             ]);
 
-            return redirect()->route('users.index')->with('success', 'User updated successfully!');
+            Alert::success('Success', 'User updated successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
+            Alert::error('Error', 'Something went wrong!');
         }
+        return redirect()->route('users.index');
     }
 
     //delete users
@@ -102,10 +108,11 @@ class UserController extends Controller
 
             $user->delete();
 
-            return redirect()->route('users.index')->with('success', 'User deleted successfully!');
+            Alert::success('Success', 'User deleted successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
+            Alert::error('Error', 'Something went wrong!');
         }
+        return redirect()->back();
     }
 
 }

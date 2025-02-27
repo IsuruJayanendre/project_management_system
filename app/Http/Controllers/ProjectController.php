@@ -7,6 +7,8 @@ use App\Models\ProjectType;
 use App\Models\ProjectSubcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class ProjectController extends Controller
@@ -61,6 +63,7 @@ class ProjectController extends Controller
     {
         $validated = $request->validate([
             'client_name' => 'required|string|max:255',
+            'project_name' => 'required|string|max:255',
             'company' => 'required|string|max:255',
             'project_type_id' => 'required|exists:project_types,id',
             'project_subcategory_id' => 'nullable|exists:project_subcategories,id',
@@ -79,14 +82,11 @@ class ProjectController extends Controller
             // Create project
             $project = Project::create($validated);
     
-            if ($project) {
-                return redirect()->route('projects.create')->with('success', 'Project added successfully!');
-            } else {
-                return back()->with('error', 'Failed to create project. Please try again.')->withInput();
-            }
+            Alert::success('Success', 'Project details saved successfully!');
         } catch (\Exception $e) {
-            return back()->with('error', 'Error: ' . $e->getMessage())->withInput();
+            Alert::error('Error', 'Something went wrong!');
         }
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -112,8 +112,10 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
+        try {
         $validated = $request->validate([
             'client_name' => 'required|string|max:255',
+            'project_name' => 'required|string|max:255',
             'company' => 'required|string|max:255',
             'project_type_id' => 'required|exists:project_types,id',
             'project_subcategory_id' => 'nullable|exists:project_subcategories,id',
@@ -126,9 +128,13 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
         $project->update($validated);
 
-        return redirect()->route('projects.index')->with('success', 'Project updated successfully!');
-    
+            Alert::success('Success', 'Project details edited successfully!');
+        } catch (\Exception $e) {
+            Alert::error('Error', 'Something went wrong!');
+        }
+        return redirect()->route('projects.index');
     }
+
     public function toggleStatus($id)
     {
         $project = Project::findOrFail($id);
@@ -144,9 +150,19 @@ class ProjectController extends Controller
 
         try {
             $project->delete();
-            return redirect()->route('projects.index')->with('success', 'Project deleted successfully!');
+            Alert::success('Success', 'Project details removed successfully!');
         } catch (\Exception $e) {
-            return back()->with('error', 'Error: ' . $e->getMessage());
+            Alert::error('Error', 'Something went wrong!');
         }
+        return redirect()->back();
+    }
+
+    public function downloadInvoice($id)
+    {
+        $project = Project::findOrFail($id);
+
+        $pdf = Pdf::loadView('projects.invoice', compact('project'));
+
+        return $pdf->download('project-invoice-' . $project->id . '.pdf');
     }
 }
