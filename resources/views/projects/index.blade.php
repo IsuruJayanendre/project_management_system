@@ -27,6 +27,7 @@
                     <th class="px-4 py-2 border">Price</th>
                     <th class="px-4 py-2 border">Starting Date</th>
                     <th class="px-4 py-2 border">Note</th>
+                    <th class="px-4 py-2 border">Status</th>
                     <th class="px-4 py-2 border">Actions</th>
                 </tr>
             </thead>
@@ -41,6 +42,19 @@
                         <td class="px-4 py-2 border">{{ number_format($project->price, 2) }}</td>
                         <td class="px-4 py-2 border">{{ $project->starting_date }}</td>
                         <td class="px-4 py-2 border">{{ $project->note }}</td>
+                            @if ($project->status == 'not_complete')
+                        <td class="px-4 py-2 border text-red-600 font-bold">
+                            Not Completed
+                        </td>
+                            @elseif ($project->status == 'complete') 
+                        <td class="px-4 py-2 border text-green-600 font-bold">
+                            Completed
+                        </td>
+                            @else 
+                        <td class="px-4 py-2 border text-red-600">
+                                Not Completed
+                        </td>
+                            @endif
                         <td class="px-4 py-2 border flex space-x-2">
                             <a href="{{ route('projects.downloadInvoice', $project->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">
                                 Invoice
