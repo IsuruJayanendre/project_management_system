@@ -57,3 +57,4 @@ Route::post('/projects/store', [ProjectController::class, 'store'])->name('proje
 Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
 Route::put('/projects/{id}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+Route::patch('/projects/{id}/toggle-status', [ProjectController::class, 'toggleStatus'])->name('projects.toggleStatus');
