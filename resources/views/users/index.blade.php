@@ -34,25 +34,34 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ( $users as $user )
-                
-            
-            <tr class="border-b hover:bg-gray-100">
-                <td class="px-4 py-2 border">
-                    {{ $user->id }}
-                </td>
-                <td class="px-4 py-2 border">
-                    {{ $user->name }}
-                </td>
-                <td class="px-4 py-2 border">
-                    {{ $user->email }}
-                </td>
-                <td class="px-4 py-2 border">
-                    {{ $user->phone }}
-                </td>
-                <td class="px-4 py-2 border">
-                    {{ $user->usertype }}
-                </td>
+            @foreach ($users as $user)
+            @if ($user->usertype != 'superadmin')
+                <tr class="border-b hover:bg-gray-100">
+                    <td class="px-4 py-2 border">
+                        {{ $user->id }}
+                    </td>
+                    <td class="px-4 py-2 border">
+                        {{ $user->name }}
+                    </td>
+                    <td class="px-4 py-2 border">
+                        {{ $user->email }}
+                    </td>
+                    <td class="px-4 py-2 border">
+                        {{ $user->phone }}
+                    </td>
+                    <td class="px-4 py-2 border">
+                        <span 
+                            class="px-2 py-1 rounded 
+                            @if ($user->usertype == 'marketing') 
+                                bg-yellow-200 
+                            @elseif ($user->usertype == 'user') 
+                                bg-blue-200  
+                            @else 
+                                bg-gray-500 text-white 
+                            @endif">
+                            {{ $user->usertype }}
+                        </span>
+                    </td>
                 <td class="px-4 py-2 border">
                     <div class="flex items-center space-x-2">
                         <!-- Edit Button -->
@@ -72,6 +81,7 @@
                     </div>
                 </td>                
             </tr>
+            @endif
             @endforeach
         </tbody>
     </table>
