@@ -5,6 +5,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTypeController;
+use App\Http\Controllers\ProjectNotificationController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -58,3 +59,10 @@ Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('pro
 Route::put('/projects/{id}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 Route::patch('/projects/{id}/toggle-status', [ProjectController::class, 'toggleStatus'])->name('projects.toggleStatus');
+
+//notification
+
+Route::get('/notifications', [ProjectNotificationController::class, 'index'])->name('notifications.index');
+Route::get('/check-remain-date-notifications', [ProjectNotificationController::class, 'checkRemainDateNotifications']);
+Route::post('/notifications/{id}/read', [ProjectNotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+Route::delete('/notifications/{id}', [ProjectNotificationController::class, 'destroy'])->name('notifications.destroy');
