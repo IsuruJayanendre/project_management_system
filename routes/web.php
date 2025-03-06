@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProfitController;
 use App\Http\Controllers\ProjectTypeController;
 use App\Http\Controllers\ProjectNotificationController;
 use App\Http\Controllers\UserController;
@@ -68,3 +69,7 @@ Route::get('/check-remain-date-notifications', [ProjectNotificationController::c
 Route::post('/notifications/{id}/read', [ProjectNotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 Route::delete('/notifications/{id}', [ProjectNotificationController::class, 'destroy'])->name('notifications.destroy');
 Route::get('/projects/{id}/download-invoice', [ProjectController::class, 'downloadInvoice'])->name('projects.downloadInvoice');
+
+//profit
+
+Route::get('/profit', [ProfitController::class, 'index'])->name('profit.index');

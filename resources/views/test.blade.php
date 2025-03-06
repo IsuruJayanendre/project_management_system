@@ -12,11 +12,11 @@
     <div class="grid grid-cols-3 gap-4">
         <div class="bg-blue-500 text-white p-4 rounded-lg shadow-md">
             <h3 class="text-lg font-semibold">📂 Total Projects</h3>
-            <p class="text-2xl font-bold">12</p>
+            <p class="text-2xl font-bold">{{ $projectCount }}</p>
         </div>
         <div class="bg-green-500 text-white p-4 rounded-lg shadow-md">
             <h3 class="text-lg font-semibold">👤 Total Users</h3>
-            <p class="text-2xl font-bold">24</p>
+            <p class="text-2xl font-bold">{{ $userCount }}</p>
         </div>
         <div class="bg-yellow-500 text-white p-4 rounded-lg shadow-md">
             <h3 class="text-lg font-semibold">🔔 Notifications</h3>

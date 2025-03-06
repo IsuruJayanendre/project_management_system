@@ -16,7 +16,7 @@
     @endif
 
     <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md" id="myTable">
             <thead>
                 <tr class="bg-gray-200">
                     <th class="px-4 py-2 border">#</th>
@@ -44,15 +44,15 @@
                         <td class="px-4 py-2 border">{{ $project->note }}</td>
                             @if ($project->status == 'not_complete')
                         <td class="px-4 py-2 border text-red-600 font-bold">
-                            Not Completed
+                            In Progerss
                         </td>
                             @elseif ($project->status == 'complete') 
                         <td class="px-4 py-2 border text-green-600 font-bold">
                             Completed
                         </td>
                             @else 
-                        <td class="px-4 py-2 border text-red-600">
-                                Not Completed
+                        <td class="px-4 py-2 border text-yellow-600">
+                            In Progerss
                         </td>
                             @endif
                         <td class="px-4 py-2 border flex space-x-2">
@@ -99,5 +99,17 @@
         });
     }
 </script>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true
+        });
+    });
+</script>
+
 
 @endsection
