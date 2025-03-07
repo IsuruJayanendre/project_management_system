@@ -88,7 +88,7 @@
     
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2">Total Cost</label>
-                    <input type="number" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-200" id="total" name="total" readonly>
+                    <input type="number" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-200" id="total" name="price" readonly>
                 </div>
     
                 <div class="mb-4">
